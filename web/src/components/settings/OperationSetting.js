@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Card, Spin } from '@douyinfe/semi-ui';
 import SettingsGeneral from '../../pages/Setting/Operation/SettingsGeneral.js';
 import SettingsSensitiveWords from '../../pages/Setting/Operation/SettingsSensitiveWords.js';
+import SettingsTokenType from '../../pages/Setting/Operation/SettingsTokenType.js';
 import SettingsLog from '../../pages/Setting/Operation/SettingsLog.js';
 import SettingsMonitoring from '../../pages/Setting/Operation/SettingsMonitoring.js';
 import SettingsCreditLimit from '../../pages/Setting/Operation/SettingsCreditLimit.js';
@@ -92,6 +93,10 @@ const OperationSetting = () => {
         {/* 屏蔽词过滤设置 */}
         <Card style={{ marginTop: '10px' }}>
           <SettingsSensitiveWords options={inputs} refresh={onRefresh} />
+        </Card>
+        {/* Token类型设置 */}
+        <Card style={{ marginTop: '10px' }}>
+          <SettingsTokenType options={inputs} refresh={onRefresh} />
         </Card>
         {/* 日志设置 */}
         <Card style={{ marginTop: '10px' }}>
