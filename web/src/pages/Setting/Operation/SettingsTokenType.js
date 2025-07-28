@@ -10,7 +10,7 @@ import {
 } from '../../../helpers';
 import { useTranslation } from 'react-i18next';
 
-export default function TokenTypeSettings(props) {
+export default function SettingsTokenType(props) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [inputs, setInputs] = useState({
