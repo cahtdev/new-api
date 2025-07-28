@@ -14,7 +14,7 @@ export default function SettingsTokenType(props) {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [inputs, setInputs] = useState({
-    TokenTypes: '',
+    TokenType: '',
   });
   const refForm = useRef();
   const [inputsRow, setInputsRow] = useState(inputs);
@@ -87,10 +87,10 @@ export default function SettingsTokenType(props) {
         <Row gutter={16}>
           <Col xs={24} sm={16}>
             <Form.TextArea
-              label={t('Token类型配置')}
+              label={t('Token类型配置(可以理解为标签)')}
               placeholder={t('为一个 JSON 文本，键为Token类型名称，值为配置信息')}
-              extraText={t('Token类型配置，可以在此处新增类型或修改现有类型的配置，格式为 JSON 字符串，例如：{"GPT-3.5": {"max_tokens": 4096}, "GPT-4": {"max_tokens": 8192}}，表示 GPT-3.5 类型的最大token数为 4096，GPT-4 类型的最大token数为 8192')}
-              field={'TokenTypes'}
+              extraText={t('Token类型配置，可以在此处新增类型或修改现有类型的配置，格式为 JSON 字符串，例如：[{"type": "TokenTypeIM", "icon": "https://robohash.org/b3eb97dd5f077e45bfb4b514058f91ec?set=set4&bgset=&size=200x200"}]')}
+              field={'TokenType'}
               autosize={{ minRows: 6, maxRows: 12 }}
               trigger='blur'
               stopValidateWithError
@@ -101,7 +101,7 @@ export default function SettingsTokenType(props) {
                 },
               ]}
               onChange={(value) =>
-                setInputs({ ...inputs, TokenTypes: value })
+                setInputs({ ...inputs, TokenType: value })
               }
             />
           </Col>
