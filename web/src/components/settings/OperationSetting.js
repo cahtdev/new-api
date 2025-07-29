@@ -32,7 +32,7 @@ const OperationSetting = () => {
     CheckSensitiveEnabled: false,
     CheckSensitiveOnPromptEnabled: false,
     SensitiveWords: '',
-    SettingsTokenType: '',
+    TokenType: '',
 
     /* 日志设置 */
     LogConsumeEnabled: false,
