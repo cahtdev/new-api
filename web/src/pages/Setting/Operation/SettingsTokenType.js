@@ -20,49 +20,42 @@ export default function SettingsTokenType(props) {
   const [inputsRow, setInputsRow] = useState(inputs);
 
   async function onSubmit() {
-    try {
-      await refForm.current.validate()
-        .then(() => {
-          const updateArray = compareObjects(inputs, inputsRow);
-          if (!updateArray.length) {
-            return showWarning(t('你似乎并没有修改什么'));
-          }
-
-          const requestQueue = updateArray.map((item) => {
-            return API.put('/api/option/', { key: item.key, value: inputs[item.key] });
-          });
-
-          setLoading(true);
-          Promise.all(requestQueue)
-            .then((res) => {
-              if (res.includes(undefined)) {
-                return showError(t('保存失败'));
-              }
-
-              for (let i = 0; i < res.length; i++) {
-                if (!res[i].data.success) {
-                  return showError(res[i].data.message);
-                }
-              }
-
-              showSuccess(t('保存成功'));
-              props.refresh();
-            })
-            .catch((error) => {
-              console.error('Unexpected error:', error);
-              showError(t('保存失败，请重试'));
-            })
-            .finally(() => {
-              setLoading(false);
-            });
-        })
-        .catch(() => {
-          showError(t('请检查输入'));
-        });
-    } catch (error) {
-      showError(t('请检查输入'));
-      console.error(error);
+    console.log('inputs:', inputs);
+    console.log('inputsRow:', inputsRow);
+    const updateArray = compareObjects(inputs, inputsRow);
+    console.log('updateArray:', updateArray);
+    if (!updateArray.length) {
+      return showWarning(t('你似乎并没有修改什么'));
     }
+      
+    const requestQueue = updateArray.map((item) => {
+      return API.put('/api/option/', { key: item.key, value: inputs[item.key] });
+    });
+
+    setLoading(true);
+    Promise.all(requestQueue)
+      .then((res) => {
+        if (res.includes(undefined)) {
+          return showError(t('保存失败'));
+        }
+
+        for (let i = 0; i < res.length; i++) {
+          if (!res[i].data.success) {
+            return showError(res[i].data.message);
+          }
+        }
+
+        showSuccess(t('保存成功'));
+        props.refresh();
+      })
+      .catch((error) => {
+        console.error('Unexpected error:', error);
+        showError(t('保存失败，请重试'));
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+    
   }
 
   useEffect(() => {
